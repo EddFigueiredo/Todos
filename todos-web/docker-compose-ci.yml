@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+
+  adquick-frontend:
+    image: node:8
+    environment:
+      - HOME=/tmp
+    volumes:
+      - .:/home/application
+      - /data/npm_cache:/data/npm_cache
+    working_dir: /home/application
+    command: ["/home/application/run-ci.sh"]
