@@ -1,7 +1,6 @@
-FROM nginx:stable-alpine-perl
+FROM node:8
 
-ENV APP_PATH /opt/adquick
+WORKDIR /home/application
+COPY . .
+RUN npm install
 
-RUN mkdir -p $APP_PATH
-
-COPY dist $APP_PATH/

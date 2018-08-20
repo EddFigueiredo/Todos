@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=${NODE_ENV:=local} webpack-dev-server --host localhost --port 8080 --history-api-fallback",
+    "start": "NODE_ENV=${NODE_ENV:=local} webpack-dev-server --host 0.0.0.0 --port 8080 --history-api-fallback",
     "mock": "npm run start & npm run stub",
     "build": "webpack --config webpack.prod.config -p",
     "prebuild": "rm -rvf dist/",

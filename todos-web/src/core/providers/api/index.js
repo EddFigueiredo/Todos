@@ -9,7 +9,6 @@ const api = axios.create({
 const getBasicConfig = () => ({
   baseURL: global.ENVIRONMENT_CONFIG.baseUrl,
   headers: {
-    'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
     'Accept-Language': 'en-US'
   }

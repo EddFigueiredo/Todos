@@ -1,8 +1,8 @@
-FROM ruby:2.5.1-alpine
+FROM ruby:2.5.1
 
 WORKDIR /home/application
 COPY . .
-RUN apk --no-cache add alpine-sdk postgresql-dev && \
-    bundle install
-CMD bin/rails server -p 8000 -c 0.0.0.0
+RUN bundle install
+CMD bin/rails server -p 8000 --binding 0.0.0.0
+ENTRYPOINT [ "/home/application/start.sh" ]
 

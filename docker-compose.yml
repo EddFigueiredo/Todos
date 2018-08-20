@@ -1,0 +1,43 @@
+version: "2.1"
+services:
+  frontend:
+    environment:
+      - NODE_ENV=local
+    depends_on:
+      - backend
+    build:
+      context: ./todos-web
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./todos-web:/home/application
+    ports:
+      - 8080:8080
+    command: npm start
+
+  backend:
+    image: "ruby:2.5.1"
+    volumes:
+      - ./todos-api:/home/application
+    environment:
+      - DATABASE_USER=user
+      - DATABASE_PASS=123456
+      - DATABASE_HOST=postgres
+      - DATABASE_NAME=test
+    depends_on:
+      - postgres
+    ports:
+      - 8000:8000
+    working_dir: /home/application
+    entrypoint: /bin/bash
+    command: ["-l", "-c", "/home/application/start.sh"]
+
+  postgres:
+    image: "postgres:9.5"
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=user
+      - POSTGRES_DB=test
+
+
